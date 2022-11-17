@@ -16,7 +16,7 @@ import org.openqa.selenium.WebElement;
 import static com.trycloud.utilities.BrowserUtils.*;
 
 
-public class US_5_StepDefs {
+public class US_5_Step_Defs {
 
     // tools:
     Faker faker = new Faker();

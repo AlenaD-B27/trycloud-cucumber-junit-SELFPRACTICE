@@ -27,6 +27,12 @@ public class LoginPage {
     public WebElement wrongCredentialsMsg;
 
 
+    public void login(){
+        inputUserBox.sendKeys(ConfigReader.getProperty("username3"));
+        inputPasswordBox.sendKeys(ConfigReader.getProperty("password"));
+        submitButton.click();
+    }
+
     public void login(String username){
         inputUserBox.sendKeys(username);
         inputPasswordBox.sendKeys(ConfigReader.getProperty("password"));

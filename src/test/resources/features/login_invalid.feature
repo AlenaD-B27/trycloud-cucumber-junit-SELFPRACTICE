@@ -1,5 +1,5 @@
 Feature: As a user, I should be able to log in.
-  @wip
+  @us_2
   Scenario Outline: Verify user login fail with invalid credentials
     Given user on the login page
     When user enter invalid "<username>" and "<password>"

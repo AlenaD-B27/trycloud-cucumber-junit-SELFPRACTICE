@@ -2,8 +2,13 @@ package com.trycloud.pages;
 
 import com.trycloud.utilities.Driver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.List;
 
 import static com.trycloud.utilities.BrowserUtils.*;
 import static com.trycloud.utilities.JavaUtils.*;
@@ -16,11 +21,12 @@ public abstract class BasePage {
 
     // --- MAIN (top of the page) MODULES:
 
+    @FindBy(css = "ul#appmenu>li>a")
+    public List<WebElement> modules;
+
     public void clickModule(String module){
         WebElement actualModule = Driver.getDriver().findElement(By.xpath("//ul[@id='appmenu']//span[normalize-space(.)='" + normalizeCase(module) + "']/.."));
         waitForClickability(actualModule, 10);
         actualModule.click();
     }
-
-
 }
