@@ -9,7 +9,7 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 
 
-public class US1_Step_Defs {
+public class US_1_Step_Defs {
 
     // pages:
 

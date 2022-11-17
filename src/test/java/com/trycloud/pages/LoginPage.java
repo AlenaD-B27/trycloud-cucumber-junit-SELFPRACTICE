@@ -23,10 +23,19 @@ public class LoginPage {
     @FindBy(css = "input#submit-form")
     public WebElement submitButton;
 
+    @FindBy(css = "p.warning.wrongPasswordMsg")
+    public WebElement wrongCredentialsMsg;
+
 
     public void login(String username){
         inputUserBox.sendKeys(username);
         inputPasswordBox.sendKeys(ConfigReader.getProperty("password"));
+        submitButton.click();
+    }
+
+    public void login(String username, String password){
+        inputUserBox.sendKeys(username);
+        inputPasswordBox.sendKeys(password);
         submitButton.click();
     }
 
