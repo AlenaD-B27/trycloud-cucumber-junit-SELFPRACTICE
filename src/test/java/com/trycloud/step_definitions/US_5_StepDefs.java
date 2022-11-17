@@ -16,7 +16,7 @@ import org.openqa.selenium.WebElement;
 import static com.trycloud.utilities.BrowserUtils.*;
 
 
-public class AddToFavs_StepDefs {
+public class US_5_StepDefs {
 
     // tools:
     Faker faker = new Faker();
