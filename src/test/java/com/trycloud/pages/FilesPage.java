@@ -21,6 +21,12 @@ public class FilesPage extends BasePage {
     @FindBy(css = "div#recommendations")
     public WebElement recommendedFiles;
 
+    @FindBy(css = "label[for='select_all_files']")
+    public WebElement checkBoxForAll;
+
+    @FindBy(xpath = "//input[contains(@id, 'select-files')]")
+    public List<WebElement> checkBoxes;
+
 
 
 
