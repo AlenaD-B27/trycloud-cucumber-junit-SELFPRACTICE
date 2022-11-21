@@ -53,7 +53,7 @@ public class US_5_Step_Defs {
     @When("the user clicks action-icon  from any file on the page")
     public void the_user_clicks_action_icon_from_any_file_on_the_page() {
         waitForVisibility(filesPage.recommendedFiles, 10);
-        searchFile = filesPage.clickActionGetFileURL();
+        searchFile = filesPage.clickActionGetFileURLnostarFile();
     }
 
 
@@ -66,6 +66,7 @@ public class US_5_Step_Defs {
     @When("user click the {string} sub-module on the left side")
     public void user_click_the_sub_module_on_the_left_side(String submodule) {
         filesPage.clickSubModule(submodule);
+        waitForClickability(favouritesPage.sortByNameBtn, 10);
     }
 
 

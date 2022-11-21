@@ -27,16 +27,32 @@ public class FilesPage extends BasePage {
     @FindBy(xpath = "//input[contains(@id, 'select-files')]")
     public List<WebElement> checkBoxes;
 
+    @FindBy(xpath = "(//span[@class='info'])[2]")
+    public WebElement sortByNameBtn;
+
+    @FindBy(css = "a.button.new")
+    public WebElement addIcon;
+
+    @FindBy(xpath = "//input[@type ='file']")
+    public WebElement hiddenUploadBar;
+
+    @FindBy(id = "uploadprogressbar")
+    public WebElement uploadFileBar;
+
+
+
+
+
 
 
 
 
 
     public void clickSubModule(String submodule){
-        Driver.getDriver().findElement(By.xpath("//ul[@class='with-icon']//li//a[.='" + normalizeCase(submodule) + "']"));
+        Driver.getDriver().findElement(By.xpath("//ul[@class='with-icon']//li//a[.='" + normalizeCase(submodule) + "']")).click();
     }
 
-    public String clickActionGetFileURL(){
+    public String clickActionGetFileURLnostarFile(){
 
         String fileURL = "";
         WebElement actionLocator = null;
@@ -44,7 +60,7 @@ public class FilesPage extends BasePage {
         for (int i = 0; i <= tableRows.size()-1; i++) {
 
 
-            if(!Driver.getDriver().findElement(By.xpath("(//table[@id='filestable']//tr[@data-type='file']//div[contains(@class,'favorite-mark')])[" + (i+1) + "]")).getAttribute("class").contains("permanent")){
+            if(!Driver.getDriver().findElement(By.xpath("(//table[@id='filestable']//tr[@data-type='file']//div[contains(@class,'favorite-mark')])[" + (i+1) + "]")).getAttribute("class").contains("permanent")){ // favourited
 
                 fileURL = Driver.getDriver().findElement(By.xpath("(//table[@id='filestable']//tr[@data-type='file']//a[contains(@href,'.php')])[" + (i+1) + "]")).getAttribute("href");
 
@@ -64,6 +80,34 @@ public class FilesPage extends BasePage {
         return fileURL;
     }
 
+    public String clickActionGetFileURLstarredFile(){
+
+        String fileURL = "";
+        WebElement actionLocator = null;
+
+        for (int i = 0; i <= tableRows.size()-1; i++) {
+
+
+            if(Driver.getDriver().findElement(By.xpath("(//table[@id='filestable']//tr[@data-type='file']//div[contains(@class,'favorite-mark')])[" + (i+1) + "]")).getAttribute("class").contains("permanent")){ // favourited
+
+                fileURL = Driver.getDriver().findElement(By.xpath("(//table[@id='filestable']//tr[@data-type='file']//a[contains(@href,'.php')])[" + (i+1) + "]")).getAttribute("href");
+
+                actionLocator = Driver.getDriver().findElement(By.xpath("(//table[@id='filestable']//tr[@data-type='file']//span[@class='fileactions']//a[@data-action='menu'])[" + (i+1) + "]"));
+
+                break;
+
+            }
+        }
+
+        if(fileURL.isBlank()) {
+            System.out.println("No files downloaded to the page or none of the files are already added to favourites.");
+        } else {
+            System.out.println("LINK: " + fileURL);
+            actionLocator.click();
+        }
+        return fileURL;
+    }
+
 
 
     //actionOptions dropdown menu when you click on "actions" icon (...)
@@ -71,6 +115,13 @@ public class FilesPage extends BasePage {
     public void chooseActionOption(String option){
         Driver.getDriver().findElement(By.xpath("//ul//li[@class=' action-favorite-container']//span[.='" + option + "']")).click();
     }
+
+    //add menu options
+
+    public void chooseAddOption(String option){
+        Driver.getDriver().findElement(By.xpath("//div[@class='newFileMenu popovermenu bubble menu open menu-left']//li//span[.='" + normalizeCase(option) + "']"));
+    }
+
 
 
 }
