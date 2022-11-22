@@ -5,7 +5,7 @@ import io.cucumber.java.en.When;
 
 import static com.trycloud.utilities.BrowserUtils.waitForVisibility;
 
-public class US_8_StepDefs {
+public class US_8_Step_Defs {
 
     FilesPage filesPage = new FilesPage();
 

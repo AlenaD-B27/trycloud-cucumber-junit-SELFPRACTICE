@@ -1,6 +1,6 @@
 package com.trycloud.pages;
 
-import com.trycloud.utilities.BrowserUtils;
+
 import com.trycloud.utilities.Driver;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -62,6 +62,31 @@ public class FilesPage extends BasePage {
     }
 
     // files and folders table:
+
+    public String clickActionGetFileOrFolderURL(){
+
+
+        String URL = "";
+        WebElement actionLocator = null;
+
+        for (int i = 0; i <= listOfFiles.size()-1; i++) {
+
+                URL = Driver.getDriver().findElement(By.xpath("(//table[@id='filestable']//a[contains(@href,'.php')])[" + (i + 1) + "]")).getAttribute("href");
+
+                actionLocator = Driver.getDriver().findElement(By.xpath("(//table[@id='filestable']//a[contains(@href,'.php')]//span[@class='fileactions']//a[@data-action='menu'])[" + (i + 1) + "]"));
+
+                break;
+
+        }
+
+        if(URL.isBlank()) {
+            System.out.println("No files downloaded and no folders are created");
+        } else {
+            System.out.println("LINK: " + URL);
+            actionLocator.click();
+        }
+        return URL;
+    }
 
 
     public String clickActionGetFileURL(){
@@ -183,6 +208,21 @@ public class FilesPage extends BasePage {
     public WebElement chooseAddOption(String option){
        return Driver.getDriver().findElement(By.xpath("//div[@class='newFileMenu popovermenu bubble menu open menu-left']//li//span[.='" + normalizeCase(option) + "']"));
     }
+
+    // Details section
+
+    @FindBy(xpath = "//div[@contenteditable='true']")
+    public WebElement commentInputBar;
+
+
+    @FindBy(xpath = "//form[@class='newCommentForm']//input[@type='submit']")
+    public WebElement submitCommentBtn;
+
+    @FindBy(id = "commentsTabView")
+    public WebElement commentsSectionModule;
+
+    @FindBy(css = "ul.comments>li.comment>div.message")
+    public List<WebElement> comments;
 
 
 
