@@ -50,7 +50,7 @@ public class US_6_Step_Defs {
 
     @When("users uploads file with the {string} option")
     public void users_uploads_file_with_the_option(String option) {
-        String fileName = "file4";
+        String fileName = "fact3";
         filesPage.chooseAddOption(option);
         filesPage.hiddenUploadBar.sendKeys("/Users/alena/Desktop/files_for_tryclowd/" + fileName);
         waitForInvisibilityOf(filesPage.uploadFileBar);
@@ -58,7 +58,7 @@ public class US_6_Step_Defs {
 
     @Then("verify {string} is displayed on the page")
     public void verify_is_displayed_on_the_page(String uploadedFileName) {
-        Assert.assertTrue(Driver.getDriver().findElement(By.xpath("//span//span[.='" + uploadedFileName + "']")).isDisplayed());
+        filesPage.verifyFileIsDisplayed(uploadedFileName);
     }
 
 

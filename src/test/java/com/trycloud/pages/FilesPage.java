@@ -1,6 +1,7 @@
 package com.trycloud.pages;
 
 import com.trycloud.utilities.Driver;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -51,6 +52,8 @@ public class FilesPage extends BasePage {
     public void clickSubModule(String submodule){
         Driver.getDriver().findElement(By.xpath("//ul[@class='with-icon']//li//a[.='" + normalizeCase(submodule) + "']")).click();
     }
+
+    // files and folders table:
 
     public String clickActionGetFileURLnostarFile(){
 
@@ -106,6 +109,14 @@ public class FilesPage extends BasePage {
             actionLocator.click();
         }
         return fileURL;
+    }
+
+    public void verifyFileIsDisplayed(String fileName){
+        for (int i = 0; i < listOfFiles.size(); i++) {
+            if(listOfFiles.get(i).getAttribute("href").contains(fileName)){
+                Assert.assertTrue(listOfFiles.get(i).isDisplayed());
+            }
+        }
     }
 
 

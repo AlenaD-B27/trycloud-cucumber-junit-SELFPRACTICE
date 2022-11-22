@@ -18,7 +18,7 @@ Then Verify that the file is removed from the Favorites sub-module’s table
 
   @us_6
 Scenario: verify users to upload a file from Files
-Given "user70" on the dashboard page
+Given "user10" on the dashboard page
 When the user clicks the "Files" module
 When the user clicks the add icon on the top
 And users uploads file with the "upload file" option
