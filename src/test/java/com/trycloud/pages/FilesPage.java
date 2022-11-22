@@ -19,6 +19,9 @@ public class FilesPage extends BasePage {
     @FindBy(xpath = "//table[@id='filestable']//tr[@data-type='file']//a[contains(@href,'.php')]")
     public List<WebElement> listOfFiles;
 
+    @FindBy(xpath = "//table[@id='filestable']//tr[@data-type='dir']//a[contains(@href,'php')]")
+    public List<WebElement> listOfFolders;
+
     @FindBy(css = "div#recommendations")
     public WebElement recommendedFiles;
 
@@ -39,6 +42,12 @@ public class FilesPage extends BasePage {
 
     @FindBy(id = "uploadprogressbar")
     public WebElement uploadFileBar;
+
+    @FindBy(xpath = "//form[@class='filenameform']//input[@type='text']")
+    public WebElement folderNameInputBar;
+
+    @FindBy(xpath = "//form[@class='filenameform']//input[@type='submit']")
+    public WebElement submitNewFolderBtn;
 
 
 
@@ -119,6 +128,14 @@ public class FilesPage extends BasePage {
         }
     }
 
+    public void verifyFolderIsDisplayed(String folderName){
+        for (int i = 0; i < listOfFolders.size(); i++) {
+            if(listOfFolders.get(i).getAttribute("href").contains(folderName)){
+                Assert.assertTrue(listOfFolders.get(i).isDisplayed());
+            }
+        }
+    }
+
 
 
     //actionOptions dropdown menu when you click on "actions" icon (...)
@@ -129,8 +146,8 @@ public class FilesPage extends BasePage {
 
     //add menu options
 
-    public void chooseAddOption(String option){
-        Driver.getDriver().findElement(By.xpath("//div[@class='newFileMenu popovermenu bubble menu open menu-left']//li//span[.='" + normalizeCase(option) + "']"));
+    public WebElement chooseAddOption(String option){
+       return Driver.getDriver().findElement(By.xpath("//div[@class='newFileMenu popovermenu bubble menu open menu-left']//li//span[.='" + normalizeCase(option) + "']"));
     }
 
 

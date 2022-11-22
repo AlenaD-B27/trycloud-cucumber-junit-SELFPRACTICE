@@ -37,7 +37,7 @@ public class US_6_Step_Defs {
             }
         }
 
-        System.out.println(actualHREF);
+        System.out.println("Actual href: " + actualHREF);
         Assert.assertNotEquals(searchFile, actualHREF);
     }
 
@@ -48,10 +48,11 @@ public class US_6_Step_Defs {
 
     @When("users uploads file with the {string} option")
     public void users_uploads_file_with_the_option(String option) {
-        String fileName = "fact3";
+        String fileName = "fact5";
         filesPage.chooseAddOption(option);
         filesPage.hiddenUploadBar.sendKeys("/Users/alena/Desktop/files_for_tryclowd/" + fileName);
         waitForInvisibilityOf(filesPage.uploadFileBar);
+        System.out.println("File \"" + fileName + "\" is uploaded");
     }
 
     @Then("verify {string} is displayed on the page")
