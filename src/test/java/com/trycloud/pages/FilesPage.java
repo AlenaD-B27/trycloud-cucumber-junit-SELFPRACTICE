@@ -1,5 +1,6 @@
 package com.trycloud.pages;
 
+import com.trycloud.utilities.BrowserUtils;
 import com.trycloud.utilities.Driver;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -11,8 +12,6 @@ import java.util.List;
 import static com.trycloud.utilities.JavaUtils.*;
 
 public class FilesPage extends BasePage {
-
-
     @FindBy(xpath = "//table[@id='filestable']//tr[@data-type='file']")
     public List<WebElement> tableRows;
 
@@ -63,6 +62,41 @@ public class FilesPage extends BasePage {
     }
 
     // files and folders table:
+
+
+    public String clickActionGetFileURL(){
+
+
+        String fileURL = "";
+        WebElement actionLocator = null;
+
+        for (int i = 0; i <= listOfFiles.size()-1; i++) {
+
+            if (!Driver.getDriver().findElement(By.xpath("(//table[@id='filestable']//tr[@data-type='file']//a[contains(@href,'.php')]//a)[" + (i + 1) + "]")).getAttribute("data-action").equals("Share")){    // shared files
+
+                fileURL = Driver.getDriver().findElement(By.xpath("(//table[@id='filestable']//tr[@data-type='file']//a[contains(@href,'.php')])[" + (i + 1) + "]")).getAttribute("href");
+
+                actionLocator = Driver.getDriver().findElement(By.xpath("(//table[@id='filestable']//tr[@data-type='file']//span[@class='fileactions']//a[@data-action='menu'])[" + (i + 1) + "]"));
+
+                break;
+            } else {
+
+                i+=2;
+
+            }
+        }
+
+        if(fileURL.isBlank()) {
+            System.out.println("No files downloaded to the page or all the files were deleted.");
+        } else {
+            System.out.println("LINK: " + fileURL);
+            actionLocator.click();
+        }
+        return fileURL;
+    }
+
+
+
 
     public String clickActionGetFileURLnostarFile(){
 
@@ -141,7 +175,7 @@ public class FilesPage extends BasePage {
     //actionOptions dropdown menu when you click on "actions" icon (...)
 
     public void chooseActionOption(String option){
-        Driver.getDriver().findElement(By.xpath("//ul//li[@class=' action-favorite-container']//span[.='" + option + "']")).click();
+        Driver.getDriver().findElement(By.xpath("//ul//li[contains(@class,' action-')]//span[.='" + normalizeCase(option) + "']")).click();
     }
 
     //add menu options
