@@ -3,11 +3,9 @@ package com.trycloud.step_definitions;
 import com.github.javafaker.Faker;
 import com.trycloud.pages.FavouritesPage;
 import com.trycloud.pages.FilesPage;
-import com.trycloud.utilities.Driver;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import static com.trycloud.utilities.BrowserUtils.waitForInvisibilityOf;
