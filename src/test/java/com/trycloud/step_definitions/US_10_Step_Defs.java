@@ -7,12 +7,10 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 
-import java.util.concurrent.TimeUnit;
-
 import static com.trycloud.utilities.BrowserUtils.*;
 
 
-public class US_10_StepDefs {
+public class US_10_Step_Defs {
 
     FilesPage filesPage = new FilesPage();
 
