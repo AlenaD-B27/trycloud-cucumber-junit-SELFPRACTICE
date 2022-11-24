@@ -57,9 +57,20 @@ public class FilesPage extends BasePage {
 
 
 
+
+
     public void clickSubModule(String submodule){
         Driver.getDriver().findElement(By.xpath("//ul[@class='with-icon']//li//a[.='" + normalizeCase(submodule) + "']")).click();
     }
+
+    @FindBy(xpath = "//button[normalize-space(.)='Settings']")
+    public WebElement settingsBtn;
+
+    @FindBy(xpath = "//div[@id='app-settings-content']//input[@type='checkbox']/..")
+    public List <WebElement> settingsClickableOptionsCheckboxes;
+
+    @FindBy(xpath = "//div[@id='app-settings-content']//input[@type='checkbox']")
+    public List <WebElement> settingsOptionsCheckboxes;
 
     // files and folders table:
 
