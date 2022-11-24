@@ -48,11 +48,8 @@ public class US_6_Step_Defs {
 
     @When("users uploads file with the {string} option")
     public void users_uploads_file_with_the_option(String option) {
-        String fileName = "fact5";
         filesPage.chooseAddOption(option);
-        filesPage.hiddenUploadBar.sendKeys("/Users/alena/Desktop/files_for_tryclowd/" + fileName);
-        waitForInvisibilityOf(filesPage.uploadFileBar);
-        System.out.println("File \"" + fileName + "\" is uploaded");
+        filesPage.uploadFile("172kb.webp");
     }
 
     @Then("verify {string} is displayed on the page")

@@ -1,10 +1,13 @@
 package com.trycloud.step_definitions;
 
 import com.trycloud.pages.FilesPage;
+import com.trycloud.utilities.Driver;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
+
+import java.util.concurrent.TimeUnit;
 
 import static com.trycloud.utilities.BrowserUtils.*;
 
@@ -33,6 +36,22 @@ public class US_10_StepDefs {
                 Assert.assertTrue(filesPage.settingsOptionsCheckboxes.get(i).isSelected());
             }
         }
+    }
+
+    double initialStorageUsage = 0;
+    @When("user checks the current storage usage")
+    public void user_checks_the_current_storage_usage() {
+        initialStorageUsage = filesPage.getCurrentStorageOccupiedKB();
+    }
+    @When("user refresh the page")
+    public void user_refresh_the_page() {
+        waitFor(2); // I give up with this synchronization, I will use Thread.sleep
+        Driver.getDriver().navigate().refresh();
+        waitForVisibility(filesPage.recommendedFiles, 10);
+    }
+    @Then("the user should be able to see storage usage is increased")
+    public void the_user_should_be_able_to_see_storage_usage_is_increased() {
+        Assert.assertTrue(filesPage.getCurrentStorageOccupiedKB() > initialStorageUsage);
     }
 
 

@@ -4,11 +4,14 @@ package com.trycloud.pages;
 import com.trycloud.utilities.Driver;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.io.EOFException;
 import java.util.List;
 
+import static com.trycloud.utilities.BrowserUtils.waitForInvisibilityOf;
 import static com.trycloud.utilities.JavaUtils.*;
 
 public class FilesPage extends BasePage {
@@ -71,6 +74,23 @@ public class FilesPage extends BasePage {
 
     @FindBy(xpath = "//div[@id='app-settings-content']//input[@type='checkbox']")
     public List <WebElement> settingsOptionsCheckboxes;
+
+    @FindBy(css = "li#quota>a>p")
+    public WebElement storageUsageInfo;
+
+    public int getCurrentStorageOccupiedKB(){
+        String currentStorageFullInfo = storageUsageInfo.getText();
+        System.out.println(currentStorageFullInfo);
+        String number = currentStorageFullInfo.substring(0, currentStorageFullInfo.indexOf(" "));
+
+        if(currentStorageFullInfo.contains("MB"))
+            System.out.println("IF YOU TEST MEMORY FUNCTIONS, MAKE SURE YOU UPLOAD FILE >= 103 KB");
+
+
+        return currentStorageFullInfo.endsWith("KB used") ?
+           Integer.parseInt(number) :
+                (int) (Double.parseDouble(number) * 1024); // 1 MB = 1024 KB
+    }
 
     // files and folders table:
 
@@ -219,6 +239,24 @@ public class FilesPage extends BasePage {
     public WebElement chooseAddOption(String option){
        return Driver.getDriver().findElement(By.xpath("//div[@class='newFileMenu popovermenu bubble menu open menu-left']//li//span[.='" + normalizeCase(option) + "']"));
     }
+
+    @FindBy(css = "div.toastify.on.dialogs.error.toastify-right.toastify-top")
+    public WebElement popUpNoMoreFreeSpace;
+
+
+    public void uploadFile(String fileName){
+        try {
+            hiddenUploadBar.sendKeys("/Users/alena/Desktop/files_for_tryclowd/" + fileName);
+            waitForInvisibilityOf(uploadFileBar);
+            System.out.println("File \"" + fileName + "\" is uploaded");
+        } catch (TimeoutException e){
+            System.out.println("pop up \"Not enough sapace\" window appeared");
+        }
+    }
+
+
+
+
 
     // Details section
 
