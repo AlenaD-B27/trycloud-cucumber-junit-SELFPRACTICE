@@ -1,3 +1,4 @@
+@regression
 Feature:  As a user, I should be able to search any item/ users from the homepage.
   @us_14
   Scenario: Verify users can search any files/folder/users from the search box.

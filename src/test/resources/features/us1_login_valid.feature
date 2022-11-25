@@ -1,3 +1,4 @@
+@regression
 Feature: As a user, I should be able to log in.
  @us_1
   Scenario Outline: Verify login with valid credentials

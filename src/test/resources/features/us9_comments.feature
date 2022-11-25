@@ -1,3 +1,4 @@
+@regression
 Feature: As a user, I should be able to write comments to files/folders.
 
   @us_9

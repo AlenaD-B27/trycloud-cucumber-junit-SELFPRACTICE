@@ -1,3 +1,4 @@
+@regression
 Feature:  As a user, I should be able to update settings.
 
 @us_10

@@ -1,3 +1,4 @@
+@regression
 Feature: As a user, I should be able to add a folder
   @us_7
   Scenario: Verify users can add the folder

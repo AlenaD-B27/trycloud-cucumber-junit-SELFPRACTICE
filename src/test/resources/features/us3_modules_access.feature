@@ -1,3 +1,4 @@
+@regression
 Feature: As a user, I should be accessing all the main modules of the app.
   @us_3
   Scenario:  Verify users accessing all the main modules of the app.

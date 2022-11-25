@@ -1,3 +1,4 @@
+@regression
 Feature: As a user, I should be able to view the contact list.
 @us_13
   Scenario:  verify users can see all the contact names on the contact list

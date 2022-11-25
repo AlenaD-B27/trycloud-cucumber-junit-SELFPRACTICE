@@ -1,3 +1,4 @@
+@regression
 Feature: As a user, I should be able to delete a file/folder.
 @us_8
   Scenario: Verify users delete a file/folder
