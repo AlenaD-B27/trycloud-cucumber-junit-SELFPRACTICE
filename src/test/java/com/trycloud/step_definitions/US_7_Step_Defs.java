@@ -2,9 +2,15 @@ package com.trycloud.step_definitions;
 
 import com.github.javafaker.Faker;
 import com.trycloud.pages.FilesPage;
+import com.trycloud.utilities.BrowserUtils;
+import com.trycloud.utilities.Driver;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+
+import static com.trycloud.utilities.BrowserUtils.waitFor;
+import static com.trycloud.utilities.BrowserUtils.waitForClickability;
 
 
 public class US_7_Step_Defs {
@@ -39,7 +45,10 @@ public class US_7_Step_Defs {
 
     @When("user choose a folder from the page")
     public void user_choose_a_folder_from_the_page() {
+        waitFor(2);
+        ((JavascriptExecutor) Driver.getDriver()).executeScript("window.scrollBy(0,1500)");
         WebElement firstFolderOnThePage = filesPage.listOfFolders.get(0);
+        waitForClickability(firstFolderOnThePage, 5);
         System.out.println("Opening folder: \"" + firstFolderOnThePage.getText() + "\" ...");
         firstFolderOnThePage.click();
     }

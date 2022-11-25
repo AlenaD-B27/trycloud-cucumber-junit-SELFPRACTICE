@@ -94,6 +94,9 @@ public class FilesPage extends BasePage {
 
     // files and folders table:
 
+    @FindBy(css = "td.filesummary>span.info")
+    public WebElement filesAndFoldersTableSummaryInfo;
+
     public String clickActionGetFileOrFolderURL(){
 
 
