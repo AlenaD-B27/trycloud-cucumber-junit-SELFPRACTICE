@@ -29,4 +29,17 @@ public abstract class BasePage {
         waitForClickability(actualModule, 10);
         actualModule.click();
     }
+
+    @FindBy(css = "span[aria-label='Magnify icon']")
+    public WebElement searchMagnifierIcon;
+
+    // search pop-up menu:
+
+    @FindBy(css = "input.unified-search__form-input")
+    public WebElement searchInputBox;
+
+    @FindBy(css = "span.unified-search__result-content>h3")
+    public List<WebElement> searchList;
+
+
 }
