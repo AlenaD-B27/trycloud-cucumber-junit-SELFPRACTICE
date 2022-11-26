@@ -17,10 +17,17 @@ Then Verify that the file is removed from the Favorites sub-module’s table
     |User100 |
 
   @us_6
-Scenario: verify users to upload a file from Files
-Given "user10" on the dashboard page
+Scenario Outline: verify users to upload a file from Files
+Given "<user>" on the dashboard page
 When the user clicks the "Files" module
 When the user clicks the add icon on the top
 And users uploads file with the "upload file" option
 Then verify "the file" is displayed on the page
+
+    Examples: usernames:
+      |user|
+      |User10  |
+      |User40  |
+      |User70  |
+      |User100 |
 

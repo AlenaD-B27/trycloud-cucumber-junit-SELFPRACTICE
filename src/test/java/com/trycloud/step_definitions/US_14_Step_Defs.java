@@ -15,7 +15,7 @@ public class US_14_Step_Defs {
         dashboardPage.searchMagnifierIcon.click();
     }
 
-    String searchInput = "User40";
+    String searchInput = "979.png";
 
     @When("users search any existing file,folder or user name")
     public void users_search_any_existing_file_folder_or_user_name() {

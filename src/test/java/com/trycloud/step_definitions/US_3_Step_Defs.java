@@ -17,9 +17,9 @@ public class US_3_Step_Defs {
 
 
 
-    @When("the users  log in with valid credentials")
-    public void the_users_log_in_with_valid_credentials() {
-        loginPage.login();
+    @When("the users  log in with valid credentials {string}")
+    public void the_users_log_in_with_valid_credentials(String username) {
+        loginPage.login(username);
     }
 
     @Then("Verify the user see the following modules:")

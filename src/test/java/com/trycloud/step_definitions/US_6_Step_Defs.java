@@ -49,7 +49,7 @@ public class US_6_Step_Defs {
     @When("users uploads file with the {string} option")
     public void users_uploads_file_with_the_option(String option) {
         filesPage.chooseAddOption(option);
-        filesPage.uploadFile("172kb.webp");
+        filesPage.uploadFile("823.png");
     }
 
     @Then("verify {string} is displayed on the page")
