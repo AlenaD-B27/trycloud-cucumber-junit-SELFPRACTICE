@@ -1,5 +1,6 @@
+@regression
 Feature: As a user, I should be able to log in.
- @us1
+ @us_1
   Scenario Outline: Verify login with valid credentials
     Given user on the login page
     When user use username "<username>" and passcode
@@ -12,3 +13,4 @@ Feature: As a user, I should be able to log in.
       |User40  |
       |User70  |
       |User100 |
+
